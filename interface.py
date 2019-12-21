@@ -23,7 +23,16 @@ class UIFrame(wx.Frame):
 
         menubar.Append(filemenu, "File")
         self.SetMenuBar(menubar)
+        self.text = wx.TextCtrl(self, -1, style=wx.EXPAND | wx.TE_MULTILINE)
+        self.Bind(wx.EVT_MENU, self.menuhandler)
         
+    def menuhandler(self, event):
+        id = event.GetId()
+        if(id == wx.ID_EXIT):
+            self.Close()
+        elif(id == wx.ID_NEW):
+            self.text.AppendText("You click the new item on the menubar\n")
+
 def main():
     app = wx.App()
     UIFrame(wx.Frame)

@@ -6,3 +6,7 @@
 
 # menubar handler
 ### Add the handler in the menubar. It currently processes simple function.
+
+# menubar function & simple text function
+### 1. I have four simple functions of menubar. It can insert text with "New" item, open a file about text, save a file, and exit the application.
+### 2. You can write anything whatever you want.

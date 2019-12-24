@@ -4,12 +4,11 @@ import os
 class UIFrame(wx.Frame):
     def __init__(self, *args, **argv):
         super().__init__(None, size=(1000,500),title="Form")
+        self.panel = wx.Panel(self)
         self.UIBar()
         self.Show()
 
     def UIBar(self):
-        panel = wx.Panel(self)
-
         menubar = wx.MenuBar()
         filemenu = wx.Menu()
 
@@ -29,8 +28,9 @@ class UIFrame(wx.Frame):
 
         menubar.Append(filemenu, "File")
         self.SetMenuBar(menubar)
-        self.text = wx.TextCtrl(panel, -1, size=(1000, 500), style=wx.EXPAND | wx.TE_MULTILINE)
+        self.text = wx.TextCtrl(self.panel, -1, size=self.GetSize(), style=wx.EXPAND | wx.TE_MULTILINE | wx.NO_BORDER)
         self.Bind(wx.EVT_MENU, self.menuhandler)
+        self.Bind(wx.EVT_MAXIMIZE, self.formhandler)
         
     def menuhandler(self, event):
         id = event.GetId()
@@ -52,6 +52,11 @@ class UIFrame(wx.Frame):
                 file.write(self.text.GetValue())
                 file.close()
             filedig.Destroy()
+
+    def formhandler(self, event):
+        #id = event.GetId()
+        if(self.IsMaximized()):
+            self.text = wx.TextCtrl(self.panel, -1, size=(1920, 1080), style=wx.EXPAND | wx.TE_MULTILINE | wx.NO_BORDER)
 def main():
     app = wx.App()
     UIFrame(wx.Frame)

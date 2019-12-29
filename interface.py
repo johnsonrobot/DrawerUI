@@ -20,6 +20,7 @@ class UIFrame(wx.Frame):
         self.adjustWin()
 
     def adjustWin(self):
+        self.SetTitle(self.fileName + " - textbook")
         self.SetSize((1000, 500))
         self.Center()
         self.Show()
@@ -231,11 +232,11 @@ class UIFrame(wx.Frame):
                 self.text.SetForegroundColour(color)
             dialog.Destroy()
         
-    def formhandler(self, event):
-        #id = event.GetId()
-        if(self.IsMaximized()):
-            self.text = wx.TextCtrl(self.panel, -1, size=(1920, 1080), style= wx.TE_MULTILINE | wx.NO_BORDER)
-            self.text.Refresh()
+    # def formhandler(self, event):
+    #     #id = event.GetId()
+    #     if(self.IsMaximized()):
+    #         self.text = wx.TextCtrl(self.panel, -1, size=(1920, 1080), style= wx.TE_MULTILINE | wx.NO_BORDER)
+    #         self.text.Refresh()
 
     def eventtext(self, event):
         self.textIsChange = True
